@@ -24,6 +24,8 @@ def user_get(user_id: int):
 def get_company_rq_list(company_id):
     try:
         rq = b.call('crm.requisite.list', {'filter': {'ENTITY_ID': company_id, 'ENTITY_TYPE_ID': '4'}})
+        if isinstance(rq,list) and ('ENTITY_ID' in rq[0]):
+              rq=rq[0]
     except:
         rq = []
     return rq
